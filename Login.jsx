@@ -1,103 +1,146 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
+// import { backendURL } from '../App'
+// import axios from 'axios'
 
-const Login = () => {
+// import { toast } from 'react-toastify'
+// const Login = ({setToken}) => { 
+  
+// const [email, setEmail]= useState('')
+//   const [password, setPassword]= useState('')
+//        const onSubmitHandler = async(event)=>{
+//          event.preventDefault()
+//       try{
 
-  const [currentState,setCurrentState]=useState('Sign Up')
-    const onSubmithandler= async(event)=>{
-      event.preventDefault();
-    }
-  return (
-    <form  onSubmit={onSubmithandler}  className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'>
-
-<div className='inline-flex  items-center gap-2 mb-2 mt-10'>
-  <p className='prata-regular text-3xl'>{currentState}</p>
-  <hr className='border-none h-[1.5px] w-8 bg-gray-800'/>
-
-</div>
- {currentState === 'Login' ? '': <input type="text" className='w-full  px-3 py-2  border border-gray-800' placeholder='Name'required  />}
-  <input type="email" className='w-full  px-3 py-2  border border-gray-800' placeholder='Email' required/>
-  <input type="password" className='w-full  px-3 py-2  border border-gray-800' placeholder='Password' required/>
-   <div className='w-full flex justify-between text-sm mt-2'>
-    <p className='cursor-pointer   text-gray-600 hover:text-black'>Forgot your Password</p>
-    {
-      currentState === 'Login'
-      ? <p onClick={() =>{ setCurrentState('Sign Up')}} className="cursor-pointer">Create New Account</p>
-       : <p onClick={() =>{ setCurrentState('Login')}} className="cursor-pointer">Login Here</p>
-       
-    }
- 
-   </div>
-   <button className='bg-black text-white font-light px-8 py-2 mt-4'>{currentState === 'Login'? "Sign In":"Sign Up"  }
-   </button>
-    </form>
-
-
-// <form className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800 bg-white p-6 rounded shadow">
-
-//   {/* Title */}
-//   <div className="inline-flex items-center gap-2 mb-2">
-//     <p className="prata-regular text-3xl">{currentState}</p>
-//     <hr className="border-none h-[1.5px] w-8 bg-gray-800" />
-//   </div>
-
-//   {/* Name (only for Sign Up) */}
-//   {currentState !== 'Login' && (
-//     <input
-//       type="text"
-//       placeholder="Name"
-//       className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-black"
-//       required
-//     />
-//   )}
-
-//   {/* Email */}
-//   <input
-//     type="email"
-//     placeholder="Email"
-//     className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-black"
-//     required
-//   />
-
-//   {/* Password */}
-//   <input
-//     type="password"
-//     placeholder="Password"
-//     className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-black"
-//     required
-//   />
-
-//   {/* Forgot password (RIGHT aligned like Flipkart) */}
-//   <div className="w-full flex justify-end text-sm">
-//     <button
-//       type="button"
-//       className="text-blue-600 hover:underline"
-//     >
-//       Forgot password?
-//     </button>
-//   </div>
-
-//   {/* Submit Button */}
-//   <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
-//     {currentState === 'Login' ? 'Login' : 'Create Account'}
-//   </button>
-
-//   {/* Toggle Login / Signup */}
-//   <p
-//     className="text-sm text-gray-600 cursor-pointer hover:underline"
-//     onClick={() =>
-//       setCurrentState(currentState === 'Login' ? 'Sign Up' : 'Login')
+//  const response= await axios.post( backendURL+'/api/user/admin',{email,password})
+// if (response.data.success){
+//    setToken(response.data.token)
+//    toast.success("Login Successful")
+// }
+      
+//       else{
+//       toast.error(response.data.message)
+//       }
 //     }
-//   >
-//     {currentState === 'Login'
-//       ? "New to Shop? Create an account"
-//       : "Already have an account? Login"}
-//   </p>
+//     catch(error){
+//       console.log(error)
+//       toast.error(error.message)
+//     }
+//   }
+  
+//     return (
 
-// </form>
+//     <div className='min-h-screen flex items-center justify-center w-full'>
+//       <div className='bg-white shadow-md  rounded-lg px-8 py-6 max-w-md'>
+//         <h1 className='text-2xl mb-2 font-bold'>Admin Panel</h1>
+//         <form  onSubmit={onSubmitHandler}>
+//           <div  className='mb-3 min-w-72'>
+//             <p className='text-sm font-medium text-gray-700  mb-2'>Email</p>
+//             <input onChange={(event) => setEmail(event.target.value)} value={email}  className='rounded-md w-full px-3 py-2   border border-gray-300  outline-none' type="email"  placeholder='your@gmail.com' required/>
+//             </div>
+//             <div className='mb-3 min-w-72'>
+//             <p className='text-sm font-medium text-gray-700  mb-2'>Password</p>
+           
+//             <input onChange={(event) => setPassword(event.target.value)} value={password} className='rounded-md w-full px-3 py-2   border border-gray-300  outline-none' type="password"  placeholder='Enter your password' required/>
+//             </div>
+//             <button type='submit' className='bg-blue-500 mt-2 w-full text-white px-4 py-2 rounded-md'>Login</button>
+//         </form>
+//       </div>
+//     </div>
+//   )
+
+// }
+// export default Login
 
 
-  )
-}
 
-export default Login
 
+import React, { useEffect, useState } from 'react';
+import { backendURL } from '../App';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
+const Login = ({ setToken }) => { 
+  
+  const [email, setEmail] = useState('');
+  
+  const [password, setPassword] = useState('');
+
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+
+    try {
+
+      const response = await axios.post(
+        backendURL + '/api/user/admin',
+        { email, password }
+      );
+
+      if (response.data.success) {
+
+        setToken(response.data.token);
+        toast.success("Login Successful ✅");
+
+      } else {
+
+        toast.error(response.data.message || "Invalid Credentials ");
+
+      }
+
+    } catch (error) {
+
+      console.log(error);
+      toast.error(error.response?.data?.message || error.message);
+
+    }
+  };
+
+  return (
+    <div className='min-h-screen flex items-center justify-center w-full'>
+
+      <div className='bg-white shadow-md rounded-lg px-8 py-6 max-w-md'>
+
+        <h1 className='text-2xl mb-2 font-bold'>Admin Panel</h1>
+
+        <form onSubmit={onSubmitHandler}>
+
+          <div className='mb-3 min-w-72'>
+            <p className='text-sm font-medium text-gray-700 mb-2'>Email</p>
+
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder='your@gmail.com'
+              required
+              className='rounded-md w-full px-3 py-2 border border-gray-300 outline-none'
+            />
+          </div>
+
+          <div className='mb-3 min-w-72'>
+            <p className='text-sm font-medium text-gray-700 mb-2'>Password</p>
+
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder='Enter your password'
+              required
+              className='rounded-md w-full px-3 py-2 border border-gray-300 outline-none'
+            />
+          </div>
+
+          <button
+            type='submit'
+            className='bg-blue-500 mt-2 w-full text-white px-4 py-2 rounded-md'
+          >
+            Login
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+  );
+};
+
+export default Login;
